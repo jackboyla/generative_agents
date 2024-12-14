@@ -44,6 +44,11 @@ while [[ $# -gt 0 ]]; do
             shift
             shift
             ;;
+        --load_history|-h)
+            ARGS="${ARGS} --load_history ${2}"
+            shift
+            shift
+            ;;
         *)
             echo "Unknown argument: $1"
             exit 1
@@ -57,4 +62,4 @@ echo "(${FILE_NAME}): Arguments: ${ARGS}"
 timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 echo "(${FILE_NAME}): Timestamp: ${timestamp}"
 mkdir -p ${LOGS_PATH}
-python3 ${BACKEND_SCRIPT_FILE} ${ARGS} | tee  ${LOGS_PATH}/${TARGET}_${timestamp}.txt
+python3 ${BACKEND_SCRIPT_FILE} ${ARGS} 2>&1 | tee ${LOGS_PATH}/${TARGET}_${timestamp}.txt

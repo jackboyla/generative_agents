@@ -4,14 +4,12 @@ Author: Joon Sung Park (joonspk@stanford.edu)
 File: retrieve.py
 Description: This defines the "Retrieve" module for generative agents. 
 """
-import sys
-sys.path.append('../../')
-
-from global_methods import *
-from persona.prompt_template.gpt_structure import *
-
 from numpy import dot
 from numpy.linalg import norm
+
+import sys
+sys.path.append('../../')
+from persona.prompt_template.gpt_structure import get_embedding
 
 def retrieve(persona, perceived): 
   """
@@ -90,6 +88,9 @@ def normalize_dict_floats(d, target_min, target_max):
     target_min = -5
     target_max = 5
   """
+  if (len(d) == 0):
+    return d
+
   min_val = min(val for val in d.values())
   max_val = max(val for val in d.values())
   range_val = max_val - min_val
@@ -166,8 +167,11 @@ def extract_importance(persona, nodes):
                     values are the float that represents the importance score.
   """
   importance_out = dict()
-  for count, node in enumerate(nodes): 
-    importance_out[node.node_id] = node.poignancy
+  for count, node in enumerate(nodes):
+    if type(node.poignancy) == int:
+      importance_out[node.node_id] = node.poignancy
+    else:
+      importance_out[node.node_id] = 4
 
   return importance_out
 
@@ -269,16 +273,3 @@ def new_retrieve(persona, focal_points, n_count=30):
     retrieved[focal_pt] = master_nodes
 
   return retrieved
-
-
-
-
-
-
-
-
-
-
-
-
-
