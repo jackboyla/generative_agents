@@ -9,9 +9,11 @@
 This repository contains the frontend from the repository "[generative_agents](https://github.com/joonspk-research/generative_agents)" that accompanies the paper "[Generative Agents: Interactive Simulacra of Human Behavior](https://arxiv.org/abs/2304.03442)."
 
 
-## Setting Up The Environment
+## ⚙️ Setting Up The Environment
 
-Do not change the env name to be able to use the bash scripts later.
+> [!IMPORTANT] 
+> Do not change the env name (`simulacra`) to be able to use the bash scripts later.
+
 ```bash
 conda create -n simulacra python=3.9.12 -y
 conda activate simulacra
@@ -38,7 +40,7 @@ http://localhost:8000/replay/<simulation-name>/<starting-time-step>
 ``` 
 Please make sure to replace `<simulation-name>` with the name of the simulation you want to replay, and `<starting-time-step>` with the integer time-step from which you wish to start the replay.
 
-For instance, by visiting the following link, you will initiate a pre-simulated example, starting at time-step 1:  
+For instance, by starting the server and visiting the following link, you will initiate a pre-simulated example, starting at time-step 1:  
 [http://localhost:8000/replay/July1_the_ville_isabella_maria_klaus-step-3-20/1/](http://localhost:8000/replay/July1_the_ville_isabella_maria_klaus-step-3-20/1/)
 
 
@@ -46,7 +48,7 @@ For instance, by visiting the following link, you will initiate a pre-simulated 
 
 The default simulation map, "The Ville", is a small town with locations such as a college, apartments, a cafe, a market, etc. The full list of locations and objects in this map are contained in the following files: [`sector_blocks.csv`](environment/frontend_server/static_dirs/assets/the_ville/matrix/special_blocks/sector_blocks.csv), [`arena_blocks.csv`](environment/frontend_server/static_dirs/assets/the_ville/matrix/special_blocks/arena_blocks.csv), and [`game_object_blocks.csv`](environment/frontend_server/static_dirs/assets/the_ville/matrix/special_blocks/game_object_blocks.csv). These are organized in a rough hierarchy: sector blocks roughly define buildings, arena blocks define rooms in buildings, and game object blocks define objects or areas in rooms.
 
-To fully overhaul the map for your own customized simulation, you'd probably need to use the Tiled map editor as described in the [original repo's README](README_origin.md). 
+To fully overhaul the map for your own customized simulation, you'd probably need to use the Tiled map editor as described in the [original repo's README](docs/README_origin.md). 
 
 > For a more involved customization, you will need to author your own base simulation files. The most straightforward approach would be to copy and paste an existing base simulation folder, renaming and editing it according to your requirements. This process will be simpler if you decide to keep the agent names unchanged. However, if you wish to change their names or increase the number of agents that the Smallville map can accommodate, you might need to directly edit the map using the [Tiled](https://www.mapeditor.org/) map editor.
 
